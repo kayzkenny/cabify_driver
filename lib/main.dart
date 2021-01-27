@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cabify_driver/pages/error_page.dart';
+import 'package:cabify_driver/pages/landing_page.dart';
+import 'package:cabify_driver/pages/loading_page.dart';
+import 'package:cabify_driver/pages/unknown_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cabify_driver/providers/app_providers.dart';
 
@@ -60,149 +64,6 @@ class App extends ConsumerWidget {
       ),
       loading: () => LoadingPage(),
       error: (error, stack) => ErrorPage(error: error, stack: stack),
-    );
-  }
-}
-
-class UnknownPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Text('404!'),
-      ),
-    );
-  }
-}
-
-class LoadingPage extends StatelessWidget {
-  const LoadingPage({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: const CircularProgressIndicator(),
-        ),
-      ),
-    );
-  }
-}
-
-class ErrorPage extends StatelessWidget {
-  const ErrorPage({
-    Key key,
-    @required this.error,
-    @required this.stack,
-  }) : super(key: key);
-
-  final Object error;
-  final StackTrace stack;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('${error.toString()}'),
-        ),
-      ),
-    );
-  }
-}
-
-class LandingPage extends StatelessWidget {
-  LandingPage({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Cabify",
-          style: TextStyle(color: Colors.black, fontSize: 32.0),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-      ),
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(32.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(height: 32.0),
-              Icon(
-                Icons.car_rental,
-                size: 100.0,
-              ),
-              SizedBox(height: 64.0),
-              Text(
-                "Welcome.",
-                style: TextStyle(
-                  fontSize: 40.0,
-                  color: Colors.black45,
-                ),
-              ),
-              Text(
-                "Modern travel",
-                style: TextStyle(
-                  fontSize: 40.0,
-                  color: Colors.black45,
-                ),
-              ),
-              Text(
-                "Starts here",
-                style: TextStyle(
-                  fontSize: 40.0,
-                  color: Colors.black45,
-                ),
-              ),
-              SizedBox(height: 64.0),
-              Text(
-                "Setting 700+ cities in motion",
-                style: TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.black45,
-                ),
-              ),
-              SizedBox(height: 64.0),
-              SizedBox(
-                height: 64.0,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  onPressed: () => Navigator.pushNamed(context, '/login'),
-                  child: Text("Log in"),
-                  elevation: 2.0,
-                  color: Colors.black,
-                  textColor: Colors.white,
-                ),
-              ),
-              SizedBox(height: 16.0),
-              SizedBox(
-                height: 64.0,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  onPressed: () => Navigator.pushNamed(context, '/signup'),
-                  child: Text("Don\'t have an account? Sign Up"),
-                  elevation: 2.0,
-                  color: Colors.greenAccent,
-                  textColor: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
