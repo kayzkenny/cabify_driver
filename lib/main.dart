@@ -5,7 +5,11 @@ import 'package:cabify_driver/pages/landing_page.dart';
 import 'package:cabify_driver/pages/loading_page.dart';
 import 'package:cabify_driver/pages/unknown_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cabify_driver/pages/home/home_page.dart';
+import 'package:cabify_driver/providers/auth_provider.dart';
 import 'package:cabify_driver/providers/app_providers.dart';
+import 'package:cabify_driver/pages/authenticate/login_page.dart';
+import 'package:cabify_driver/pages/authenticate/signup_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,26 +34,26 @@ class App extends ConsumerWidget {
         ),
         onGenerateRoute: (settings) {
           if (settings.name == '/') {
-            // final user = context.read(authServiceProvider).currentUser();
+            final user = context.read(authServiceProvider).currentUser();
 
-            // return MaterialPageRoute(
-            //   builder: (context) => user != null ? HomePage() : LandingPage(),
-            // );
+            return MaterialPageRoute(
+              builder: (context) => user != null ? HomePage() : LandingPage(),
+            );
 
-            return MaterialPageRoute(builder: (context) => LandingPage());
+            // return MaterialPageRoute(builder: (context) => LandingPage());
           }
 
-          // if (settings.name == '/signup') {
-          //   return MaterialPageRoute(builder: (context) => SignUpPage());
-          // }
+          if (settings.name == '/signup') {
+            return MaterialPageRoute(builder: (context) => SignUpPage());
+          }
 
           // if (settings.name == '/search') {
           //   return MaterialPageRoute(builder: (context) => SearchPage());
           // }
 
-          // if (settings.name == '/login') {
-          //   return MaterialPageRoute(builder: (context) => LoginPage());
-          // }
+          if (settings.name == '/login') {
+            return MaterialPageRoute(builder: (context) => LoginPage());
+          }
 
           // if (settings.name == '/requestcab') {
           //   return MaterialPageRoute(builder: (context) => RequestCabPage());
