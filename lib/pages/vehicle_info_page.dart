@@ -1,7 +1,6 @@
-import 'package:cabify_driver/models/vehicle_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cabify_driver/models/user_data_model.dart';
+import 'package:cabify_driver/models/vehicle_model.dart';
 import 'package:cabify_driver/providers/database_provider.dart';
 
 class VehicleInfoPage extends StatefulWidget {

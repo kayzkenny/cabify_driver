@@ -1,8 +1,8 @@
-import 'package:flutter_riverpod/all.dart';
 import 'package:meta/meta.dart';
 import 'package:cabify_driver/models/vehicle_model.dart';
 import 'package:cabify_driver/shared/firestore_path.dart';
 import 'package:cabify_driver/models/user_data_model.dart';
+import 'package:cabify_driver/models/availableDriver.dart';
 import 'package:cabify_driver/services/firestore_service.dart';
 
 abstract class Database {
@@ -20,6 +20,10 @@ abstract class Database {
 
   /// Set user vehicle
   Future<void> setUserVehicle({@required Vehicle vehicle});
+
+  Future<void> setDriverAvailable({@required AvailableDriver availableDriver});
+
+  Future<void> removeDriverAvailable();
 }
 
 class FirestoreDatabase implements Database {
@@ -66,6 +70,22 @@ class FirestoreDatabase implements Database {
     _service.updateData(
       path: FirestorePath.userVehicle(uid),
       data: vehicle.toMap(),
+    );
+  }
+
+  @override
+  Future<void> setDriverAvailable(
+      {@required AvailableDriver availableDriver}) async {
+    _service.setData(
+      path: FirestorePath.availableDriver(uid),
+      data: availableDriver.toMap(),
+    );
+  }
+
+  @override
+  Future<void> removeDriverAvailable() async {
+    _service.deleteData(
+      path: FirestorePath.availableDriver(uid),
     );
   }
 }
