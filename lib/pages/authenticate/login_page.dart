@@ -16,15 +16,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool loading = false;
+  bool passwordHidden = true;
   final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    bool loading = false;
-    bool passwordHidden = true;
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-
     void togglePasswordVisibility() =>
         setState(() => passwordHidden = !passwordHidden);
 

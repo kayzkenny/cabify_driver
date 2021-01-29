@@ -1,3 +1,4 @@
+import 'package:cabify_driver/pages/vehicle_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cabify_driver/pages/error_page.dart';
@@ -47,9 +48,9 @@ class App extends ConsumerWidget {
             return MaterialPageRoute(builder: (context) => SignUpPage());
           }
 
-          // if (settings.name == '/search') {
-          //   return MaterialPageRoute(builder: (context) => SearchPage());
-          // }
+          if (settings.name == '/vehicleinfo') {
+            return MaterialPageRoute(builder: (context) => VehicleInfoPage());
+          }
 
           if (settings.name == '/login') {
             return MaterialPageRoute(builder: (context) => LoginPage());

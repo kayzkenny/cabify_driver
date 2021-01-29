@@ -1,17 +1,20 @@
+import 'package:cabify_driver/models/vehicle_model.dart';
+
 class UserData {
   final String uid;
   final String email;
   final String username;
   final String avatarURL;
   final String phoneNumber;
+  final Vehicle vehicleDetails;
 
-  UserData({
-    this.uid,
-    this.email,
-    this.username,
-    this.avatarURL,
-    this.phoneNumber,
-  });
+  UserData(
+      {this.uid,
+      this.email,
+      this.username,
+      this.avatarURL,
+      this.phoneNumber,
+      this.vehicleDetails});
 
   /// Convert userData to map such as a firestore document
   Map<String, dynamic> toMap() {
@@ -35,6 +38,9 @@ class UserData {
     final String username = data['username'];
     final String avatarURL = data['avatarURL'];
     final String phoneNumber = data['phoneNumber'];
+    final String vehicleColor = data['vehicleDetails']['color'];
+    final String vehicleModel = data['vehicleDetails']['model'];
+    final String vehicleNumber = data['vehicleDetails']['number'];
 
     return UserData(
       email: email,
@@ -42,6 +48,11 @@ class UserData {
       username: username ?? null,
       avatarURL: avatarURL ?? null,
       phoneNumber: phoneNumber ?? null,
+      vehicleDetails: Vehicle(
+        color: vehicleColor ?? null,
+        model: vehicleModel ?? null,
+        number: vehicleNumber ?? null,
+      ),
     );
   }
 }

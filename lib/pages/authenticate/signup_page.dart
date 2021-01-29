@@ -27,6 +27,15 @@ class _SignUpPageState extends State<SignUpPage> {
   final phoneNumberController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    usernameController.dispose();
+    phoneNumberController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(
     BuildContext context,
@@ -57,7 +66,7 @@ class _SignUpPageState extends State<SignUpPage> {
               .read(databaseProvider)
               .setUserData(userData: currentUserData);
 
-          Navigator.pushReplacementNamed(context, '/');
+          Navigator.pushReplacementNamed(context, '/vehicleinfo');
         }
 
         setState(() => loading = false);
@@ -80,6 +89,8 @@ class _SignUpPageState extends State<SignUpPage> {
           content: e.message,
         );
       } catch (e) {
+        print('-------error--------');
+        print(e.toString());
         showErrorDialog(
           context: context,
           title: "Something went wrong",
